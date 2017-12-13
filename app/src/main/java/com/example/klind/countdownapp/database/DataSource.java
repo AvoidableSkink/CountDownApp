@@ -30,15 +30,15 @@ public class DataSource {
         mdbHelper.close();
     }
 
-    public Event createItem(Event item)
+    public Event createItem(Event event)
     {
-        ContentValues values = item.toValues();
-        mdatabase.insert(EventsTable.TABLE_ITEMS,null,values);
-        return item;
+        ContentValues values = event.toValues();
+        mdatabase.insert(EventsTable.TABLE_EVENTS,null,values);
+        return event;
     }
 
-    public long getDataItemsCount()
+    public long getEventsCount()
     {
-        return DatabaseUtils.queryNumEntries(mdatabase,EventsTable.TABLE_ITEMS);
+        return DatabaseUtils.queryNumEntries(mdatabase,EventsTable.TABLE_EVENTS);
     }
 }

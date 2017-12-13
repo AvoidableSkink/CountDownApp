@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DB_File_Name = "nadia.db";
+    public static final String DB_File_Name = "events.db";
     public static final int DB_VERSION = 1;
 
     public DBHelper(Context context) {
