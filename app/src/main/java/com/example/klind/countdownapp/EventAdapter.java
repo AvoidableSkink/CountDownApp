@@ -81,7 +81,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 //                Toast.makeText(mContext, "You selected " + item.getItemName(),
 //                        Toast.LENGTH_SHORT).show();
 //                String itemId = item.getItemId();
-                //TODO: LOOK AT THIS BIT YOU COMMENTED OUT DONT FORGET ABOUT IT
 //                Intent intent = new Intent(mContext, DetailActivity.class);
 //                intent.putExtra(ITEM_KEY, item);
 //                mContext.startActivity(intent);
