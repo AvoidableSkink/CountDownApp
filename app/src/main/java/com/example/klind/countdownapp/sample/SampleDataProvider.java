@@ -19,9 +19,11 @@ public class SampleDataProvider {
         eventItemList = new ArrayList<>();
         eventItemMap = new HashMap<>();
 
-        addItem(new Event(null,"Christmas","12-25-2017",1,"christmas.jpg"));
+        addItem(new Event(null,"Christmas","2017-12-25",1,"christmas.jpg"));
 
-        addItem(new Event(null, "July 4th", "07-04-2018",2,"fireworks.png"));
+        addItem(new Event(null, "July 4th", "2018-07-04",2,"fireworks.png"));
+
+        addItem(new Event(null,"My Birthday","2018-07-14",3,"christmas_2.jpg"));
 
     }
 

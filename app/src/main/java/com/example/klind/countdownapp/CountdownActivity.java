@@ -28,6 +28,8 @@ public class CountdownActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable runnable;
 
+    String theDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,8 @@ public class CountdownActivity extends AppCompatActivity {
         if (item == null) {
             throw new AssertionError("Null data item received!");
         }
+
+        theDate = item.getEventDate();
 
         txtDay = (TextView) findViewById(R.id.txtDay);
         txtHour = (TextView) findViewById(R.id.txtHour);
@@ -63,6 +67,8 @@ public class CountdownActivity extends AppCompatActivity {
         {
             return;
         }
+
+        countDownStart();
     }
 
     public void countDownStart() {
@@ -75,7 +81,7 @@ public class CountdownActivity extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
                     // Please here set your event date//YYYY-MM-DD
-                    Date futureDate = dateFormat.parse("2019-5-30");
+                    Date futureDate = dateFormat.parse(theDate);
                     Date currentDate = new Date();
                     if (!currentDate.after(futureDate)) {
                         long diff = futureDate.getTime()
