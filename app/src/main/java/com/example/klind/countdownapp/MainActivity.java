@@ -1,5 +1,6 @@
 package com.example.klind.countdownapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -84,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
+                startActivity(intent);
             }
         });
     }

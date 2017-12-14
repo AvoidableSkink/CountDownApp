@@ -21,6 +21,8 @@
         </activity>
         <activity
             android:name=".CountdownActivity" />
+        <activity
+            android:name=".AddEventActivity" />
     </application>
 
 </manifest>
