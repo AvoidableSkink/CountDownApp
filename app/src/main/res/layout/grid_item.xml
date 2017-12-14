@@ -25,4 +25,5 @@
         android:text="A menu item"
         android:textSize="14sp"
         tools:ignore="HardcodedText" />
+
 </RelativeLayout>

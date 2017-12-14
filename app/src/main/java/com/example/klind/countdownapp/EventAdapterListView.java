@@ -42,11 +42,13 @@ public class EventAdapterListView extends ArrayAdapter<Event> {
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.event_title);
+        TextView tvDate = (TextView) convertView.findViewById(R.id.date_overview);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.photo_item);
 
         Event item = mEvents.get(position);
 
         tvName.setText(item.getEventName());
+        tvDate.setText(item.getEventDate());
 //        imageView.setImageResource(R.drawable.apple_pie);
 
         InputStream inputStream = null;

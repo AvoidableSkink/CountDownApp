@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.klind.countdownapp.model.Event;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -67,6 +69,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         try {
             holder.tvName.setText(item.getEventName());
+            holder.tvDate.setText(item.getEventDate());
+            //TODO: THIS IS WHERE YOU WILL HAVE TO ALSO CHANGE THE DATE THING TO ACTUALLY SHOW UP ON THE THING
             String imageFile = item.getImage();
             InputStream inputStream = mContext.getAssets().open(imageFile);
             Drawable d = Drawable.createFromStream(inputStream, null);
@@ -105,12 +109,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvName;
+        public TextView tvDate;
         public ImageView imageView;
         public View mView;
         public ViewHolder(View itemView) {
             super(itemView);
 
             tvName = (TextView) itemView.findViewById(R.id.event_title);
+            tvDate = (TextView) itemView.findViewById(R.id.date_overview);
             imageView = (ImageView) itemView.findViewById(R.id.photo_item);
             mView = itemView;
         }
