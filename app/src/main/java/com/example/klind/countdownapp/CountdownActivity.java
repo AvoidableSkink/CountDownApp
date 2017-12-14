@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.klind.countdownapp.model.Event;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,7 +24,7 @@ public class CountdownActivity extends AppCompatActivity {
 
     private TextView txtDay, txtHour, txtMinute, txtSecond;
     private TextView tvEventStart, tvEventName;
-    private RelativeLayout actBackground;
+    private ImageView background;
     private Handler handler;
     private Runnable runnable;
 
@@ -42,17 +44,25 @@ public class CountdownActivity extends AppCompatActivity {
         txtSecond = (TextView) findViewById(R.id.txtSecond);
         tvEventStart = (TextView) findViewById(R.id.tveventStart);
         tvEventName = (TextView) findViewById(R.id.textViewheader2);
-        actBackground = (RelativeLayout) findViewById(R.id.activity_countdown);
+        background = (ImageView) findViewById(R.id.background);
 
         tvEventName.setText("until " + item.getEventName() + "!!");
-        Drawable d = null;
-        try {
-            d = Drawable.createFromStream(getAssets().open(item.getImage()), null);
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        //set the background
+        try
+        {
+            // get input stream
+            InputStream ims = getAssets().open(item.getImage());
+            // load image as Drawable
+            Drawable d = Drawable.createFromStream(ims, null);
+            // set image to ImageView
+            background.setImageDrawable(d);
+            ims.close();
         }
-        actBackground.setBackground(d);
-        countDownStart();
+        catch(IOException ex)
+        {
+            return;
+        }
     }
 
     public void countDownStart() {

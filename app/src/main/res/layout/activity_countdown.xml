@@ -10,6 +10,11 @@
     android:paddingTop="16dp"
     tools:context="com.example.klind.countdownapp.CountdownActivity">
 
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
