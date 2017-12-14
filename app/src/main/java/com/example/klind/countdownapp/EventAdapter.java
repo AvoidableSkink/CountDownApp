@@ -110,8 +110,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvName = (TextView) itemView.findViewById(R.id.itemNameText);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            tvName = (TextView) itemView.findViewById(R.id.event_title);
+            imageView = (ImageView) itemView.findViewById(R.id.photo_item);
             mView = itemView;
         }
     }

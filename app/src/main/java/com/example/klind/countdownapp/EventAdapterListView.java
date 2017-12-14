@@ -41,8 +41,8 @@ public class EventAdapterListView extends ArrayAdapter<Event> {
             convertView = mInflater.inflate(R.layout.list_item, parent, false);
         }
 
-        TextView tvName = (TextView) convertView.findViewById(R.id.itemNameText);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
+        TextView tvName = (TextView) convertView.findViewById(R.id.event_title);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.photo_item);
 
         Event item = mEvents.get(position);
 
