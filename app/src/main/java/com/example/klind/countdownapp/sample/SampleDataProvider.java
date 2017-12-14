@@ -25,6 +25,7 @@ public class SampleDataProvider {
 
         addItem(new Event(null,"My Birthday","2018-07-14",3,"birthday.jpg"));
 
+        addItem(new Event(null,"Halloween","2018-10-31",4,"halloween.jpg"));
     }
 
     private static void addItem(Event item) {
