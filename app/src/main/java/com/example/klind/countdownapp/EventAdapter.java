@@ -85,9 +85,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 //                Toast.makeText(mContext, "You selected " + item.getItemName(),
 //                        Toast.LENGTH_SHORT).show();
 //                String itemId = item.getItemId();
-//                Intent intent = new Intent(mContext, DetailActivity.class);
-//                intent.putExtra(ITEM_KEY, item);
-//                mContext.startActivity(intent);
+
+                //TODO:GIVE THE ACTIVITY YOUR DATE DATA STUFFS
+                Intent intent = new Intent(mContext, CountdownActivity.class);
+                intent.putExtra(ITEM_KEY, item);
+                mContext.startActivity(intent);
             }
         });
 

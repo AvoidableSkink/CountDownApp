@@ -23,7 +23,7 @@ public class CountdownActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_countdown);
 
         txtDay = (TextView) findViewById(R.id.txtDay);
         txtHour = (TextView) findViewById(R.id.txtHour);
