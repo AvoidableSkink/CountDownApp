@@ -1,6 +1,7 @@
 package com.example.klind.countdownapp;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,31 +24,51 @@ import java.util.Date;
  * Created by klind on 12/13/2017.
  */
 
-public class AddEventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddEventActivity extends AppCompatActivity {
 
-    Button setDate;
+    static final int DIALOG_ID = 0;
+    int mYear,mMonth,mDay;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-        setDate = (Button) findViewById(R.id.setDate);
+        Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        setListeners();
+    }
+
+    public void setListeners(){
+        Button setDate = (Button) findViewById(R.id.setDate);
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR);
-                int mMonth = c.get(Calendar.MONTH);
-                int mDay = c.get(Calendar.DAY_OF_MONTH);
-
+            public void onClick(View view) {
+                showDialog(DIALOG_ID);
             }
-            });
-        }
+        });
+    }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//        addEventViewModel.setEventDateTime(LocalDateTime.of(year, month + 1, dayOfMonth, 0, 0));
-//        textViewCurrentDate.setText(addEventViewModel.getEventDateTime().toString());
+    protected Dialog onCreateDialog(int id){
+        if (DIALOG_ID == id){
+            return new DatePickerDialog(this, datePickerListener,mYear,mMonth,mDay);
+        }
+        else return null;
     }
+
+    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            mYear = year;
+            mMonth = month + 1;
+            mDay = day;
+
+            Toast.makeText(AddEventActivity.this,mYear + "/" + mMonth +"/" + mDay, Toast.LENGTH_LONG).show();
+        }
+    };
+
 }
