@@ -21,9 +21,9 @@ public class SampleDataProvider {
 
         addItem(new Event(null,"Christmas","2017-12-25",1,"christmas.jpg"));
 
-        addItem(new Event(null, "July 4th", "2018-07-04",2,"fireworks.png"));
+        addItem(new Event(null, "July 4th", "2018-07-04",2,"fireworks.jpg"));
 
-        addItem(new Event(null,"My Birthday","2018-07-14",3,"christmas_2.jpg"));
+        addItem(new Event(null,"My Birthday","2018-07-14",3,"birthday.jpg"));
 
     }
 

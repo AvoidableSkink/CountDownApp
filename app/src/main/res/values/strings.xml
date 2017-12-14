@@ -9,5 +9,7 @@
     <string name="days">Days</string>
     <string name="time_left">Time Left</string>
     <string name="only">Only</string>
+    <string name="set_date">Set Date</string>
+    <string name="there_is_only">There is only</string>
 
 </resources>
