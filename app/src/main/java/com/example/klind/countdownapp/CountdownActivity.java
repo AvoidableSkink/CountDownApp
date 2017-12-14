@@ -1,11 +1,16 @@
 package com.example.klind.countdownapp;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.klind.countdownapp.model.Event;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +21,8 @@ import java.util.Date;
 public class CountdownActivity extends AppCompatActivity {
 
     private TextView txtDay, txtHour, txtMinute, txtSecond;
-    private TextView tvEventStart;
+    private TextView tvEventStart, tvEventName;
+    private RelativeLayout actBackground;
     private Handler handler;
     private Runnable runnable;
 
@@ -25,12 +31,27 @@ public class CountdownActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown);
 
+        Event item = getIntent().getExtras().getParcelable(EventAdapter.ITEM_KEY);
+        if (item == null) {
+            throw new AssertionError("Null data item received!");
+        }
+
         txtDay = (TextView) findViewById(R.id.txtDay);
         txtHour = (TextView) findViewById(R.id.txtHour);
         txtMinute = (TextView) findViewById(R.id.txtMinute);
         txtSecond = (TextView) findViewById(R.id.txtSecond);
         tvEventStart = (TextView) findViewById(R.id.tveventStart);
+        tvEventName = (TextView) findViewById(R.id.textViewheader2);
+        actBackground = (RelativeLayout) findViewById(R.id.activity_countdown);
 
+        tvEventName.setText("until " + item.getEventName() + "!!");
+        Drawable d = null;
+        try {
+            d = Drawable.createFromStream(getAssets().open(item.getImage()), null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        actBackground.setBackground(d);
         countDownStart();
     }
 

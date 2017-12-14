@@ -8,5 +8,6 @@
     <string name="hours">Hours</string>
     <string name="days">Days</string>
     <string name="time_left">Time Left</string>
+    <string name="only">Only</string>
 
 </resources>
