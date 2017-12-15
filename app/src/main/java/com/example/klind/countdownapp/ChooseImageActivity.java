@@ -1,5 +1,6 @@
 package com.example.klind.countdownapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.klind.countdownapp.database.DataSource;
 import com.example.klind.countdownapp.image.database.DataImageSource;
@@ -70,8 +72,13 @@ public class ChooseImageActivity extends AppCompatActivity{
 
         rvChooseImage.setLayoutManager(new LinearLayoutManager(this));
         rvChooseImage.setAdapter(adapter);
-        rvChooseImage.callOnClick();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+            setResult(RESULT_OK,data);
+            finish();
+    }
 }
 

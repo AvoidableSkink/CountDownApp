@@ -29,6 +29,10 @@ import static com.example.klind.countdownapp.sample.SampleDataProvider.eventItem
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TITLE_KEY = "title key";
+    public static final String DATE_KEY = "date key";
+    public static final String IMG_KEY = "img key";
+
     public static final int DATA_REQUEST = 1001;
     List<Event> eventItemList = SampleDataProvider.eventItemList;
     DataSource mDataSource;
@@ -91,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //TODO: GET THE RESULT FROM THE ACTIVITY STUFFS
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,5 +1,6 @@
 package com.example.klind.countdownapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +35,7 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
     private List<Background> mItems;
     private Context context;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
+    Context mcontext;
 
     public backgroundAdapter(Context context, List<Background> items) {
         this.context = context;
@@ -53,6 +55,9 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
             }
         };
         settings.registerOnSharedPreferenceChangeListener(prefsListener);
+
+        //allows for startactivityforresult in the clicklistener
+        mcontext=parent.getContext();
 
         boolean grid = settings.getBoolean(
                 context.getString(R.string.pref_display_grid), false);
@@ -89,7 +94,7 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
                 Toast.makeText(context,chosenImage,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, AddEventActivity.class);
                 intent.putExtra(ChooseImageActivity.ITEM_KEY, chosenImage);
-                context.startActivity(intent);
+                ((Activity)mcontext).startActivityForResult(intent,MainActivity.DATA_REQUEST);
             }
         });
     }

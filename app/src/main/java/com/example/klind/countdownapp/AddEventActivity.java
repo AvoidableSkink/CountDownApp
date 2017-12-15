@@ -104,7 +104,23 @@ public class AddEventActivity extends AppCompatActivity {
 
         // a toast message that just displays the title
         Toast.makeText(AddEventActivity.this,mTitle,Toast.LENGTH_LONG).show();
+        done();
+    }
 
+    private void done()
+    {
+        //give back the title,date, and image
+        //already have the title set from when they pressed add event
+        String date = displayDate.getText().toString();
+        String image = displayImage.getText().toString();
+
+        Intent intent = new Intent();
+        intent.putExtra(MainActivity.TITLE_KEY,mTitle);
+        intent.putExtra(MainActivity.DATE_KEY,date);
+        intent.putExtra(MainActivity.IMG_KEY,image);
+
+        setResult(RESULT_OK,intent);
+        finish();
     }
 
     @Override
@@ -128,7 +144,7 @@ public class AddEventActivity extends AppCompatActivity {
             //if it is, increment the year by one
             try {
                 Date chosenDate = dateFormat.parse(mDate);
-                if(chosenDate.getTime() < todaysDate.getTime())
+                if(chosenDate.getTime() <= todaysDate.getTime())
                 {
                     mYear++;
                     mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth)+"-"+Integer.toString(mDay);
