@@ -18,6 +18,8 @@ import com.example.klind.countdownapp.model.Event;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,11 +34,12 @@ public class AddEventActivity extends AppCompatActivity {
     static final int DIALOG_ID = 0;
     int mYear,mMonth,mDay;
     String mTitle,mDate,mImage;
+    Date todaysDate;
 
     TextView displayDate,displayImage;
     EditText eventTitle;
     Button setDate,addEvent;
-    //null name date sortposition picture
+    SimpleDateFormat dateFormat;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,14 @@ public class AddEventActivity extends AppCompatActivity {
         mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth+1)+"-"+Integer.toString(mDay);
         displayDate.setText(mDate);
         displayImage.setText((mImage));
+
+         dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd");
+        try {
+            todaysDate = dateFormat.parse(mDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         setListeners();
     }
@@ -111,9 +122,23 @@ public class AddEventActivity extends AppCompatActivity {
             mMonth = month + 1;
             mDay = day;
 
-            mDate = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
+            mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth)+"-"+Integer.toString(mDay);
+
+            //check that the chosen date is not in the future
+            //if it is, increment the year by one
+            try {
+                Date chosenDate = dateFormat.parse(mDate);
+                if(chosenDate.getTime() < todaysDate.getTime())
+                {
+                    mYear++;
+                    mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth)+"-"+Integer.toString(mDay);
+                    Toast.makeText(AddEventActivity.this,"Date has already passed, event date set to next year.", Toast.LENGTH_LONG).show();
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             displayDate.setText(mDate);
-            Toast.makeText(AddEventActivity.this,mDate, Toast.LENGTH_LONG).show();
         }
     };
 
