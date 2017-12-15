@@ -33,7 +33,7 @@ public class AddEventActivity extends AppCompatActivity {
 
     TextView displayDate;
     EditText eventTitle;
-    Button setDate,addEvent;
+    Button setDate,chooseImage,addEvent;
     //null name date sortposition picture
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class AddEventActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
+        //TODO: you are working on letting the user choose their image!!!!
         eventTitle = (EditText) findViewById(R.id.enter_event_title);
         setDate = (Button) findViewById(R.id.setDate);
         addEvent = (Button) findViewById(R.id.addEvent);
@@ -67,12 +68,24 @@ public class AddEventActivity extends AppCompatActivity {
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if they don't enter a title it reads in "" and you need to tell them to enter a title
-                String theTitle = eventTitle.getText().toString();
-                Toast.makeText(AddEventActivity.this,theTitle,Toast.LENGTH_LONG).show();
-
+                addTheEvent();
             }
         });
+    }
+
+    private void addTheEvent(){
+        //if they don't enter a title it reads in "" and you need to tell them to enter a title
+        mTitle = eventTitle.getText().toString();
+
+        //if the user hasnt entered a title they are asked to do so
+        if (mTitle.equals(""))
+        {
+            Toast.makeText(AddEventActivity.this,"Please enter a title for your event",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // a toast message that just displays the title
+        Toast.makeText(AddEventActivity.this,mTitle,Toast.LENGTH_LONG).show();
     }
 
     @Override

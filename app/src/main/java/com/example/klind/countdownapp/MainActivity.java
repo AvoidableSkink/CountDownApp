@@ -115,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DATA_REQUEST && resultCode == RESULT_OK){
+            //TODO: create and add the new event returned using the data returned in the intent
+        }
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         mDataSource.close();
