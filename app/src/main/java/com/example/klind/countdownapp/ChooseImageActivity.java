@@ -38,7 +38,6 @@ public class ChooseImageActivity extends AppCompatActivity{
 
         mDataImageSource = new DataImageSource(this);
         mDataImageSource.open();
-        //Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
 
         long numItems = mDataImageSource.getBackgroundsCount();
             try {
