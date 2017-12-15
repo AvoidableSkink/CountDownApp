@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,10 +29,11 @@ public class AddEventActivity extends AppCompatActivity {
 
     static final int DIALOG_ID = 0;
     int mYear,mMonth,mDay;
-    String title,date,image;
+    String mTitle,mDate,mImage;
 
     TextView displayDate;
-
+    EditText eventTitle;
+    Button setDate,addEvent;
     //null name date sortposition picture
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +45,32 @@ public class AddEventActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
+        eventTitle = (EditText) findViewById(R.id.enter_event_title);
+        setDate = (Button) findViewById(R.id.setDate);
+        addEvent = (Button) findViewById(R.id.addEvent);
+
         displayDate = (TextView) findViewById(R.id.date_display);
-        date = Integer.toString(mYear)+"-"+Integer.toString(mMonth+1)+"-"+Integer.toString(mDay);
-        displayDate.setText(date);
+        mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth+1)+"-"+Integer.toString(mDay);
+        displayDate.setText(mDate);
 
         setListeners();
     }
 
     public void setListeners(){
-        Button setDate = (Button) findViewById(R.id.setDate);
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog(DIALOG_ID);
+            }
+        });
+
+        addEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if they don't enter a title it reads in "" and you need to tell them to enter a title
+                String theTitle = eventTitle.getText().toString();
+                Toast.makeText(AddEventActivity.this,theTitle,Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -75,9 +90,9 @@ public class AddEventActivity extends AppCompatActivity {
             mMonth = month + 1;
             mDay = day;
 
-            date = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
-            displayDate.setText(date);
-            Toast.makeText(AddEventActivity.this,date, Toast.LENGTH_LONG).show();
+            mDate = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
+            displayDate.setText(mDate);
+            Toast.makeText(AddEventActivity.this,mDate, Toast.LENGTH_LONG).show();
         }
     };
 
