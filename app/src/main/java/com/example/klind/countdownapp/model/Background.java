@@ -15,8 +15,8 @@ import java.util.UUID;
 
 public class Background implements Parcelable {
 
-    private String image;
-    private String backgroundId;
+    public String image;
+    public String backgroundId;
 
     public Background(){}
 
@@ -69,9 +69,26 @@ public class Background implements Parcelable {
         dest.writeString(this.backgroundId);
         dest.writeString(this.image);
     }
-    
+
+    protected Background(Parcel in) {
+        this.backgroundId = in.readString();
+        this.image = in.readString();
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
+
+    public static final Parcelable.Creator<Background> CREATOR = new Parcelable.Creator<Background>() {
+        @Override
+        public Background createFromParcel(Parcel source) {
+            return new Background(source);
+        }
+
+        @Override
+        public Background[] newArray(int size) {
+            return new Background[size];
+        }
+    };
 }

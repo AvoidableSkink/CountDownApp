@@ -22,7 +22,7 @@ public class DataImageSource {
 
     public DataImageSource(Context Context) {
         this.mContext = Context;
-        mdbHelper = new DBHelper(mContext);
+        mdbHelper = new DBImageHelper(mContext);
         mdatabase = mdbHelper.getWritableDatabase();
     }
 

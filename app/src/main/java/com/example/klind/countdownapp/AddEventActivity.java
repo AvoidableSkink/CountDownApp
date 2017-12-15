@@ -2,6 +2,7 @@ package com.example.klind.countdownapp;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import java.util.Date;
 
 public class AddEventActivity extends AppCompatActivity {
 
+    public static final int DATA_REQUEST = 1002;
     static final int DIALOG_ID = 0;
     int mYear,mMonth,mDay;
     String mTitle,mDate,mImage;
@@ -78,6 +80,8 @@ public class AddEventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO: open a new choose image activity which will be similar to the main activity
                 //and use startactivityforresult();
+                Intent intent = new Intent(getApplicationContext(), ChooseImageActivity.class);
+                startActivityForResult(intent,DATA_REQUEST);
             }
         });
     }

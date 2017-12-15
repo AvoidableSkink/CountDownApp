@@ -85,15 +85,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 mContext.startActivity(intent);
             }
         });
-
-        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(mContext, "You long clicked " + item.getEventName(),
-                        Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
     }
 
     @Override
