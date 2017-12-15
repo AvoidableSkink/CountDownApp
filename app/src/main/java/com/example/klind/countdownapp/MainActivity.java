@@ -49,23 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mDataSource = new DataSource(this);
         mDataSource.open();
 
-        long numItems = mDataSource.getEventsCount();
-//        if (numItems == 0) {
-//            for (Event item : eventItemList) {
-//                try {
-//                    mDataSource.createItem(item);
-//                } catch (SQLiteException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        Collections.sort(eventItemList, new Comparator<Event>() {
-//            @Override
-//            public int compare(Event o1, Event o2) {
-//                return o1.getEventName().compareTo(o2.getEventName());
-//            }
-//        });
-
+        //TODO:FILL THE ITEMLIST WITH THINGS IN THE DATABASE RATH
         setUpRecyclerView();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -128,6 +112,25 @@ public class MainActivity extends AppCompatActivity {
             mDataSource.open();
 
             eventItemList.add(newEvent);
+
+            long numItems = mDataSource.getEventsCount();
+
+            if (numItems == 0) {
+                for (Event item : eventItemList) {
+                    try {
+                        mDataSource.createItem(item);
+                    } catch (SQLiteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            Collections.sort(eventItemList, new Comparator<Event>() {
+                @Override
+                public int compare(Event o1, Event o2) {
+                    return o1.getEventName().compareTo(o2.getEventName());
+                }
+            });
+
             setUpRecyclerView();
             mDataSource.close();
         }

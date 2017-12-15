@@ -158,6 +158,7 @@ public class AddEventActivity extends AppCompatActivity {
             displayDate.setText(mDate);
         }
     };
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

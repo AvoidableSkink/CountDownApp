@@ -3,7 +3,10 @@ package com.example.klind.countdownapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +26,8 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by klind on 12/13/2017.
@@ -93,6 +99,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 mContext.startActivity(intent);
             }
         });
+
+//        holder.trashBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+
     }
 
     public void countDownStart(final TextView day, final String eventDate) {
@@ -137,10 +151,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         public TextView tvDate;
         public TextView daysLeft;
         public ImageView imageView;
+        //public ImageButton trashBtn;
         public View mView;
         public ViewHolder(View itemView) {
             super(itemView);
 
+            //trashBtn = (ImageButton) itemView.findViewById(R.id.button_delete);
             daysLeft = (TextView) itemView.findViewById(R.id.remaining_days_text);
             tvName = (TextView) itemView.findViewById(R.id.event_title);
             tvDate = (TextView) itemView.findViewById(R.id.date_overview);
