@@ -28,7 +28,11 @@ public class AddEventActivity extends AppCompatActivity {
 
     static final int DIALOG_ID = 0;
     int mYear,mMonth,mDay;
+    String title,date,image;
 
+    TextView displayDate;
+
+    //null name date sortposition picture
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,10 @@ public class AddEventActivity extends AppCompatActivity {
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        displayDate = (TextView) findViewById(R.id.date_display);
+        date = Integer.toString(mYear)+"-"+Integer.toString(mMonth+1)+"-"+Integer.toString(mDay);
+        displayDate.setText(date);
 
         setListeners();
     }
@@ -67,7 +75,9 @@ public class AddEventActivity extends AppCompatActivity {
             mMonth = month + 1;
             mDay = day;
 
-            Toast.makeText(AddEventActivity.this,mYear + "/" + mMonth +"/" + mDay, Toast.LENGTH_LONG).show();
+            date = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
+            displayDate.setText(date);
+            Toast.makeText(AddEventActivity.this,date, Toast.LENGTH_LONG).show();
         }
     };
 

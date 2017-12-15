@@ -29,6 +29,7 @@ import static com.example.klind.countdownapp.sample.SampleDataProvider.eventItem
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int DATA_REQUEST = 1001;
     List<Event> eventItemList = SampleDataProvider.eventItemList;
     DataSource mDataSource;
 
@@ -45,28 +46,28 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
 
         long numItems = mDataSource.getEventsCount();
-        if (numItems == 0) {
-            for (Event item : eventItemList) {
-                try {
-                    mDataSource.createItem(item);
-                } catch (SQLiteException e) {
-                    e.printStackTrace();
-                }
-            }
-            //Toast.makeText(this, "Data Inserted",
-              //      Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            //Toast.makeText(this, "Data already present",
-              //      Toast.LENGTH_SHORT).show();
-        }
-        Collections.sort(eventItemList, new Comparator<Event>() {
-            @Override
-            public int compare(Event o1, Event o2) {
-                return o1.getEventName().compareTo(o2.getEventName());
-            }
-        });
+//        if (numItems == 0) {
+//            for (Event item : eventItemList) {
+//                try {
+//                    mDataSource.createItem(item);
+//                } catch (SQLiteException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            //Toast.makeText(this, "Data Inserted",
+//              //      Toast.LENGTH_SHORT).show();
+//        }
+//        else
+//        {
+//            //Toast.makeText(this, "Data already present",
+//              //      Toast.LENGTH_SHORT).show();
+//        }
+//        Collections.sort(eventItemList, new Comparator<Event>() {
+//            @Override
+//            public int compare(Event o1, Event o2) {
+//                return o1.getEventName().compareTo(o2.getEventName());
+//            }
+//        });
 
         EventAdapter adapter = new EventAdapter(this, eventItemList);
 
