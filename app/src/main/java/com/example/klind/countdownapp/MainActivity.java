@@ -119,18 +119,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == DATA_REQUEST && resultCode == RESULT_OK){
-            //TODO: create and add the new event returned using the data returned in the intent
+
             String title = data.getStringExtra(TITLE_KEY);
             String date = data.getStringExtra(DATE_KEY);
             String image = data.getStringExtra(IMG_KEY);
 
             Event newEvent = new Event(null,title,date,1,image);
             mDataSource.open();
-//            try {
-//                mDataSource.createItem(newEvent);
-//            } catch (SQLiteException e) {
-//                e.printStackTrace();
-//            }
+
             eventItemList.add(newEvent);
             setUpRecyclerView();
             mDataSource.close();

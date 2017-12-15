@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.example.klind.countdownapp.model.Event;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +29,8 @@ import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
 
+    private Handler handler;
+    private Runnable runnable;
     public static final String ITEM_ID_KEY = "item_id_key";
     public static final String ITEM_KEY = "item_key";
     private List<Event> mItems;
@@ -68,6 +73,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         try {
             holder.tvName.setText(item.getEventName());
             holder.tvDate.setText(item.getEventDate());
+
+            countDownStart(holder.daysLeft, item.getEventDate());
+
             //TODO: THIS IS WHERE YOU WILL HAVE TO ALSO CHANGE THE DATE THING TO ACTUALLY SHOW UP ON THE THING
             String imageFile = item.getImage();
             InputStream inputStream = mContext.getAssets().open(imageFile);
@@ -87,6 +95,37 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         });
     }
 
+    public void countDownStart(final TextView day, final String eventDate) {
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this, 1000);
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat(
+                            "yyyy-MM-dd");
+                    // Please here set your event date//YYYY-MM-DD
+                    Date futureDate = dateFormat.parse(eventDate);
+                    Date currentDate = new Date();
+                    if (!currentDate.after(futureDate)) {
+                        long diff = futureDate.getTime()
+                                - currentDate.getTime();
+                        long days = diff / (24 * 60 * 60 * 1000);
+                        diff -= days * (24 * 60 * 60 * 1000);
+
+                        day.setText("" + String.format("%02d", days) + " days remaining!");
+
+                    } else {
+                        day .setText("The event started!");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+    }
+
     @Override
     public int getItemCount() {
         return mItems.size();
@@ -96,11 +135,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         public TextView tvName;
         public TextView tvDate;
+        public TextView daysLeft;
         public ImageView imageView;
         public View mView;
         public ViewHolder(View itemView) {
             super(itemView);
 
+            daysLeft = (TextView) itemView.findViewById(R.id.remaining_days_text);
             tvName = (TextView) itemView.findViewById(R.id.event_title);
             tvDate = (TextView) itemView.findViewById(R.id.date_overview);
             imageView = (ImageView) itemView.findViewById(R.id.photo_item);

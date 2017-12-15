@@ -44,6 +44,8 @@ public class AddEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
         mImage = intent.getStringExtra(ChooseImageActivity.ITEM_KEY);
@@ -53,7 +55,6 @@ public class AddEventActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        //TODO: you are working on letting the user choose their image!!!!
         eventTitle = (EditText) findViewById(R.id.enter_event_title);
         setDate = (Button) findViewById(R.id.setDate);
         addEvent = (Button) findViewById(R.id.addEvent);
@@ -157,5 +158,9 @@ public class AddEventActivity extends AppCompatActivity {
             displayDate.setText(mDate);
         }
     };
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

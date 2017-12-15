@@ -39,6 +39,8 @@ public class ChooseImageActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_image);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mDataImageSource = new DataImageSource(this);
         mDataImageSource.open();
@@ -81,6 +83,11 @@ public class ChooseImageActivity extends AppCompatActivity{
             setResult(RESULT_OK, data);
             finish();
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
 

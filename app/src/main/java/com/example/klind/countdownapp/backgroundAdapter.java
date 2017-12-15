@@ -84,7 +84,6 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
             e.printStackTrace();
         }
 
-        //TODO: FINISH THE CLICK LISTENER FOR THE IMAGES
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

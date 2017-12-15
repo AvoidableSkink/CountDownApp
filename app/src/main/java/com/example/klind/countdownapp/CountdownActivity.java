@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -34,6 +35,9 @@ public class CountdownActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         Event item = getIntent().getExtras().getParcelable(EventAdapter.ITEM_KEY);
         if (item == null) {
@@ -119,5 +123,11 @@ public class CountdownActivity extends AppCompatActivity {
         findViewById(R.id.LinearLayout4).setVisibility(View.GONE);
         findViewById(R.id.textViewheader1).setVisibility(View.GONE);
         findViewById(R.id.textViewheader2).setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
