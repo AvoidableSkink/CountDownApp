@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.example.klind.countdownapp.model.Event;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
