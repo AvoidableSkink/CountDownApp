@@ -54,7 +54,7 @@ public class Event implements Parcelable {
 
     public String getEventDate() {return eventDate;}
 
-    public void setEventDate(String eventName) {this.eventDate = eventDate;}
+    public void setEventDate(String eventDate) {this.eventDate = eventDate;}
 
     public int getSortPosition() {
         return sortPosition;

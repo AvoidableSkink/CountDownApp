@@ -17,10 +17,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.klind.countdownapp.database.DBHelper;
 import com.example.klind.countdownapp.database.DataSource;
 import com.example.klind.countdownapp.model.Event;
 import com.example.klind.countdownapp.sample.SampleDataProvider;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String IMG_KEY = "img key";
 
     public static final int DATA_REQUEST = 1001;
-    List<Event> eventItemList = SampleDataProvider.eventItemList;
+    List<Event> eventItemList;// = SampleDataProvider.eventItemList;
     DataSource mDataSource;
     RecyclerView recyclerView;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dbHelper = new DBHelper(this);
 
 
         mDataSource = new DataSource(this);
         mDataSource.open();
 
         //TODO:FILL THE ITEMLIST WITH THINGS IN THE DATABASE RATH
+        fillList();
         setUpRecyclerView();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillList()
     {
-        //mDataSource
+        eventItemList = dbHelper.getAllEvents();
     }
 
     private void setUpRecyclerView(){

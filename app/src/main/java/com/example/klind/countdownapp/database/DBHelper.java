@@ -19,6 +19,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_File_Name = "events.db";
     public static final int DB_VERSION = 1;
     public static final String COLUMN_NAME = "eventName";
+    public static final String COLUMN_DATE = "date";
+    public static final String COLUMN_POSITION = "sortPosition";
+    public static final String COLUMN_IMAGE = "image";
 
     public DBHelper(Context context) {
         super(context, DB_File_Name, null, DB_VERSION);
@@ -39,16 +42,15 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Event> listItems = new ArrayList<Event>();
 
-        Cursor cursor = db.rawQuery("SELECT * from " + "events",
-                new String[] {});
+        Cursor cursor = db.rawQuery("SELECT * from " + "events", null);
 
         if (cursor.moveToFirst()) {
             do {
                 Event event = new Event();
 
-                event.setEventId(cursor.getString(cursor.getColumnIndex(COLUMN_ID)));
-
                 event.setEventName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                event.setEventDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
+                event.setImage(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE)));
 
                 listItems.add(event);
             } while (cursor.moveToNext());
