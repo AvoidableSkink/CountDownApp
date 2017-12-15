@@ -1,6 +1,7 @@
 package com.example.klind.countdownapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -17,9 +18,12 @@ import android.widget.Toast;
 import com.example.klind.countdownapp.model.Background;
 import com.example.klind.countdownapp.model.Event;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by klind on 12/14/2017.
@@ -30,6 +34,7 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
     private List<Background> mItems;
     private Context context;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
+    private String chosenImage;
 
     public backgroundAdapter(Context context, List<Background> items) {
         this.context = context;
@@ -67,6 +72,8 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
 
         try {
             holder.tvImageName.setText(item.getImage());
+            //TODO: LOOK AT THIS ISH
+            //holder.selected.setText();
             String imageFile = item.getImage();
             InputStream inputStream = context.getAssets().open(imageFile);
             Drawable d = Drawable.createFromStream(inputStream, null);
@@ -81,7 +88,10 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
 //                Intent intent = new Intent(mContext, CountdownActivity.class);
 //                intent.putExtra(ITEM_KEY, item);
 //                mContext.startActivity(intent);
-                Toast.makeText(context,"clicked a photo",Toast.LENGTH_SHORT).show();
+                ViewGroup parent = (ViewGroup) v;
+                TextView as = (TextView) parent.findViewById(R.id.bg_name);
+                chosenImage = (String) as.getText();
+                Toast.makeText(context,chosenImage,Toast.LENGTH_SHORT).show();
             }
         });
     }

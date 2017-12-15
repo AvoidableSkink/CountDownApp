@@ -28,7 +28,7 @@ import java.util.Date;
 
 public class AddEventActivity extends AppCompatActivity {
 
-    public static final int DATA_REQUEST = 1002;
+    public static final int DATA_REQUEST = 1001;
     static final int DIALOG_ID = 0;
     int mYear,mMonth,mDay;
     String mTitle,mDate,mImage;
@@ -99,6 +99,22 @@ public class AddEventActivity extends AppCompatActivity {
 
         // a toast message that just displays the title
         Toast.makeText(AddEventActivity.this,mTitle,Toast.LENGTH_LONG).show();
+
+//        String firstName = textFirstName.getText().toString();
+//        String lastName = textLastName.getText().toString();
+//        String age = textAge.getText().toString();
+//        String city = textCity.getText().toString();
+//        String hobby = textHobby.getText().toString();
+//        Intent intent = new Intent();
+//        intent.putExtra(MainActivity.KEY_VALUE_1,firstName);
+//        intent.putExtra(MainActivity.KEY_VALUE_2,lastName);
+//        intent.putExtra(MainActivity.KEY_VALUE_3,age);
+//        intent.putExtra(MainActivity.DATA_KEY_1,city);
+//        intent.putExtra(MainActivity.DATA_KEY_2,hobby);
+//
+//        setResult(RESULT_OK,intent);
+//        finish();
+
     }
 
     @Override
