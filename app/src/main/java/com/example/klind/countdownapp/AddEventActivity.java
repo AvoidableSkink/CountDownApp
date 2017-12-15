@@ -49,6 +49,7 @@ public class AddEventActivity extends AppCompatActivity {
         eventTitle = (EditText) findViewById(R.id.enter_event_title);
         setDate = (Button) findViewById(R.id.setDate);
         addEvent = (Button) findViewById(R.id.addEvent);
+        chooseImage = (Button) findViewById(R.id.btnChooseImage);
 
         displayDate = (TextView) findViewById(R.id.date_display);
         mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth+1)+"-"+Integer.toString(mDay);
@@ -69,6 +70,14 @@ public class AddEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addTheEvent();
+            }
+        });
+
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: open a new choose image activity which will be similar to the main activity
+                //and use startactivityforresult();
             }
         });
     }
