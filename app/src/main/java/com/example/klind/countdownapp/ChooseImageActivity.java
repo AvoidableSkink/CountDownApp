@@ -28,6 +28,8 @@ import java.util.List;
 
 public class ChooseImageActivity extends AppCompatActivity{
 
+    public static final String ITEM_KEY = "item_key";
+
     DataImageSource mDataImageSource;
     List<Background> backgroundList = new ArrayList<>();
 

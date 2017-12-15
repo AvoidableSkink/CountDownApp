@@ -33,7 +33,7 @@ public class AddEventActivity extends AppCompatActivity {
     int mYear,mMonth,mDay;
     String mTitle,mDate,mImage;
 
-    TextView displayDate;
+    TextView displayDate,displayImage;
     EditText eventTitle;
     Button setDate,chooseImage,addEvent;
     //null name date sortposition picture
@@ -41,6 +41,9 @@ public class AddEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+
+        Intent intent = getIntent();
+        mImage = intent.getStringExtra(ChooseImageActivity.ITEM_KEY);
 
         Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -52,10 +55,12 @@ public class AddEventActivity extends AppCompatActivity {
         setDate = (Button) findViewById(R.id.setDate);
         addEvent = (Button) findViewById(R.id.addEvent);
         chooseImage = (Button) findViewById(R.id.btnChooseImage);
+        displayImage = (TextView) findViewById(R.id.txt_image);
 
         displayDate = (TextView) findViewById(R.id.date_display);
         mDate = Integer.toString(mYear)+"-"+Integer.toString(mMonth+1)+"-"+Integer.toString(mDay);
         displayDate.setText(mDate);
+        displayImage.setText((mImage));
 
         setListeners();
     }
@@ -99,21 +104,6 @@ public class AddEventActivity extends AppCompatActivity {
 
         // a toast message that just displays the title
         Toast.makeText(AddEventActivity.this,mTitle,Toast.LENGTH_LONG).show();
-
-//        String firstName = textFirstName.getText().toString();
-//        String lastName = textLastName.getText().toString();
-//        String age = textAge.getText().toString();
-//        String city = textCity.getText().toString();
-//        String hobby = textHobby.getText().toString();
-//        Intent intent = new Intent();
-//        intent.putExtra(MainActivity.KEY_VALUE_1,firstName);
-//        intent.putExtra(MainActivity.KEY_VALUE_2,lastName);
-//        intent.putExtra(MainActivity.KEY_VALUE_3,age);
-//        intent.putExtra(MainActivity.DATA_KEY_1,city);
-//        intent.putExtra(MainActivity.DATA_KEY_2,hobby);
-//
-//        setResult(RESULT_OK,intent);
-//        finish();
 
     }
 

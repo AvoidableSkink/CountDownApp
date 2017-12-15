@@ -83,13 +83,13 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mContext, CountdownActivity.class);
-//                intent.putExtra(ITEM_KEY, item);
-//                mContext.startActivity(intent);
                 ViewGroup parent = (ViewGroup) v;
                 TextView as = (TextView) parent.findViewById(R.id.bg_name);
                 String chosenImage = (String) as.getText();
                 Toast.makeText(context,chosenImage,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, AddEventActivity.class);
+                intent.putExtra(ChooseImageActivity.ITEM_KEY, chosenImage);
+                context.startActivity(intent);
             }
         });
     }
