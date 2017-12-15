@@ -78,7 +78,6 @@ public class Event implements Parcelable {
 
         values.put(EventsTable.COLUMN_ID,eventId);
         values.put(EventsTable.COLUMN_NAME,eventName);
-        //values.put(EventsTable.);
         values.put(EventsTable.COLUMN_POSITION,sortPosition);
         values.put(EventsTable.COLUMN_IMAGE,image);
 
