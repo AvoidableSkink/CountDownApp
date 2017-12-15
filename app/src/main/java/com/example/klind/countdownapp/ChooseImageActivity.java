@@ -77,8 +77,10 @@ public class ChooseImageActivity extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            setResult(RESULT_OK,data);
+        if (requestCode == MainActivity.DATA_REQUEST && resultCode == RESULT_OK) {
+            setResult(RESULT_OK, data);
             finish();
+        }
     }
 }
 

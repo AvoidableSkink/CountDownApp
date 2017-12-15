@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int DATA_REQUEST = 1001;
     List<Event> eventItemList = SampleDataProvider.eventItemList;
     DataSource mDataSource;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDataSource = new DataSource(this);
         mDataSource.open();
-        //Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
 
         long numItems = mDataSource.getEventsCount();
 //        if (numItems == 0) {
@@ -58,13 +58,6 @@ public class MainActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //            }
-//            //Toast.makeText(this, "Data Inserted",
-//              //      Toast.LENGTH_SHORT).show();
-//        }
-//        else
-//        {
-//            //Toast.makeText(this, "Data already present",
-//              //      Toast.LENGTH_SHORT).show();
 //        }
 //        Collections.sort(eventItemList, new Comparator<Event>() {
 //            @Override
@@ -73,18 +66,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        EventAdapter adapter = new EventAdapter(this, eventItemList);
-
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        if (grid) {
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        }
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        setUpRecyclerView();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +78,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //TODO: GET THE RESULT FROM THE ACTIVITY STUFFS
+    private void setUpRecyclerView(){
+        EventAdapter adapter = new EventAdapter(this, eventItemList);
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean grid = settings.getBoolean(getString(R.string.pref_display_grid), false);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        if (grid) {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        }
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,6 +120,20 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == DATA_REQUEST && resultCode == RESULT_OK){
             //TODO: create and add the new event returned using the data returned in the intent
+            String title = data.getStringExtra(TITLE_KEY);
+            String date = data.getStringExtra(DATE_KEY);
+            String image = data.getStringExtra(IMG_KEY);
+
+            Event newEvent = new Event(null,title,date,1,image);
+            mDataSource.open();
+//            try {
+//                mDataSource.createItem(newEvent);
+//            } catch (SQLiteException e) {
+//                e.printStackTrace();
+//            }
+            eventItemList.add(newEvent);
+            setUpRecyclerView();
+            mDataSource.close();
         }
     }
 
