@@ -25,7 +25,7 @@ import java.util.List;
  * Created by klind on 12/14/2017.
  */
 
-public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.BGHolder> {
+public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.ViewHolder> {
 
     private List<Background> mItems;
     private Context context;
@@ -37,7 +37,7 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.BG
     }
 
     @Override
-    public backgroundAdapter.BGHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public backgroundAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         SharedPreferences settings =
                 PreferenceManager.getDefaultSharedPreferences(context);
@@ -52,17 +52,17 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.BG
 
         boolean grid = settings.getBoolean(
                 context.getString(R.string.pref_display_grid), false);
-        int layoutId = grid ? R.layout.grid_item : R.layout.list_item;
+        int layoutId = grid ? R.layout.grid_item : R.layout.bg_image_item;
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View itemView = inflater.inflate(layoutId, parent, false);
-        backgroundAdapter.BGHolder bgHolder = new BGHolder(itemView);
-        return bgHolder;
+        ViewHolder viewHolder = new ViewHolder(itemView);
+        return viewHolder;
     }
 
 
     @Override
-    public void onBindViewHolder(backgroundAdapter.BGHolder holder, int position) {
+    public void onBindViewHolder(backgroundAdapter.ViewHolder holder, int position) {
         final Background item = mItems.get(position);
 
         try {
@@ -88,16 +88,16 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.BG
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mItems.size();
     }
 
-    public static class BGHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView imageView;
         public TextView tvImageName;
         public View mView;
 
-        public BGHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             tvImageName = (TextView) itemView.findViewById(R.id.bg_name);
             imageView = (ImageView) itemView.findViewById(R.id.bg_item);
