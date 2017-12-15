@@ -82,11 +82,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(mContext, "You selected " + item.getItemName(),
-//                        Toast.LENGTH_SHORT).show();
-//                String itemId = item.getItemId();
-
-                //TODO:GIVE THE ACTIVITY YOUR DATE DATA STUFFS
                 Intent intent = new Intent(mContext, CountdownActivity.class);
                 intent.putExtra(ITEM_KEY, item);
                 mContext.startActivity(intent);

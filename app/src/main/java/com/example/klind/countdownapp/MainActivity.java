@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDataSource = new DataSource(this);
         mDataSource.open();
-        Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Database Created", Toast.LENGTH_SHORT).show();
 
         long numItems = mDataSource.getEventsCount();
         if (numItems == 0) {
@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            Toast.makeText(this, "Data Inserted",
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Data Inserted",
+              //      Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(this, "Data already present",
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Data already present",
+              //      Toast.LENGTH_SHORT).show();
         }
         Collections.sort(eventItemList, new Comparator<Event>() {
             @Override
