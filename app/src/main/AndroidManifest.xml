@@ -23,6 +23,8 @@
             android:name=".CountdownActivity" />
         <activity
             android:name=".AddEventActivity" />
+        <activity
+            android:name=".ChooseImageActivity" />
     </application>
 
 </manifest>
