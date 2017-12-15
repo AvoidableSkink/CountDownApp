@@ -35,7 +35,7 @@ public class AddEventActivity extends AppCompatActivity {
 
     TextView displayDate,displayImage;
     EditText eventTitle;
-    Button setDate,chooseImage,addEvent;
+    Button setDate,addEvent;
     //null name date sortposition picture
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,6 @@ public class AddEventActivity extends AppCompatActivity {
         eventTitle = (EditText) findViewById(R.id.enter_event_title);
         setDate = (Button) findViewById(R.id.setDate);
         addEvent = (Button) findViewById(R.id.addEvent);
-        chooseImage = (Button) findViewById(R.id.btnChooseImage);
         displayImage = (TextView) findViewById(R.id.txt_image);
 
         displayDate = (TextView) findViewById(R.id.date_display);
@@ -77,16 +76,6 @@ public class AddEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addTheEvent();
-            }
-        });
-
-        chooseImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO: open a new choose image activity which will be similar to the main activity
-                //and use startactivityforresult();
-                Intent intent = new Intent(getApplicationContext(), ChooseImageActivity.class);
-                startActivityForResult(intent,DATA_REQUEST);
             }
         });
     }
