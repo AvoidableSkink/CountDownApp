@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void fillList()
+    {
+        //mDataSource
+    }
+
     private void setUpRecyclerView(){
         EventAdapter adapter = new EventAdapter(this, eventItemList);
 

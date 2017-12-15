@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.klind.countdownapp.model.Event;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by klind on 12/13/2017.
@@ -36,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public List<Event> getAllEvents() {
+    public ArrayList<Event> getAllEvents() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Event> listItems = new ArrayList<Event>();
 
