@@ -68,6 +68,8 @@ public class ChooseImageActivity extends AppCompatActivity{
 
         rvChooseImage.setLayoutManager(new LinearLayoutManager(this));
         rvChooseImage.setAdapter(adapter);
+        rvChooseImage.callOnClick();
     }
+
 }
 

@@ -34,7 +34,6 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
     private List<Background> mItems;
     private Context context;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
-    private String chosenImage;
 
     public backgroundAdapter(Context context, List<Background> items) {
         this.context = context;
@@ -72,8 +71,6 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
 
         try {
             holder.tvImageName.setText(item.getImage());
-            //TODO: LOOK AT THIS ISH
-            //holder.selected.setText();
             String imageFile = item.getImage();
             InputStream inputStream = context.getAssets().open(imageFile);
             Drawable d = Drawable.createFromStream(inputStream, null);
@@ -82,6 +79,7 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
             e.printStackTrace();
         }
 
+        //TODO: FINISH THE CLICK LISTENER FOR THE IMAGES
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +88,7 @@ public class backgroundAdapter extends RecyclerView.Adapter<backgroundAdapter.Vi
 //                mContext.startActivity(intent);
                 ViewGroup parent = (ViewGroup) v;
                 TextView as = (TextView) parent.findViewById(R.id.bg_name);
-                chosenImage = (String) as.getText();
+                String chosenImage = (String) as.getText();
                 Toast.makeText(context,chosenImage,Toast.LENGTH_SHORT).show();
             }
         });
